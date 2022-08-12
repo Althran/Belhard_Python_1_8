@@ -28,4 +28,3 @@ class LogMeta(type):
             new_attr[attr_name] = attr_value
         new_cls = super().__new__(mcs, name, bases, attr)
         return new_cls
-    
