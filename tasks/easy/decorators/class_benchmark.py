@@ -34,4 +34,8 @@ def def_benchmark(func):
 
 
 def class_benchmark(cls):
-
+    call_attr = {k: v for k, v in cls.__dict__.items() if callable(v)}
+    for name, value in call_attr.items():
+        decorated = def_benchmark(value)
+        setattr(cls, name, decorated)
+    return cls
