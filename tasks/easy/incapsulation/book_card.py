@@ -19,8 +19,8 @@ CURRENT_YEAR = date.today().year
 
 class BookCard:
     __author: str
-    __title = str
-    __year = int
+    __title: str
+    __year: int
 
     def __init__(self, __author, __title, __year):
         self.__author = __author
@@ -46,15 +46,15 @@ class BookCard:
         return self.year >= other
 
     @property
-    def get_author(self):
+    def author(self):
         return self.__author
 
     @property
-    def get_title(self):
+    def title(self):
         return self.__title
 
     @property
-    def get_year(self):
+    def year(self):
         return self.__year
 
     @author.setter
