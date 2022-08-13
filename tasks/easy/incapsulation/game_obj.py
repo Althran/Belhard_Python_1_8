@@ -18,6 +18,7 @@ class GameObject:
         self.__x = __x
         self.__y = __y
 
+    @property
     def read(self):
         return f'Координаты {self.__x} и {self.__y}'
 
@@ -26,7 +27,4 @@ class GameObject:
         self.__y = delta_y + self.__y
 
 
-a = GameObject(1, 3)
-print(a.read())
-a.move(4, 1)
-print(a.read())
+

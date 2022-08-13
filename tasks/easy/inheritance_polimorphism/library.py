@@ -42,8 +42,7 @@ class LibraryReader(Person):
     books: set
 
     def __init__(self, fullname, phone, uid):
-        self.fullname = fullname
-        self.phone = phone
+        super().__init__(fullname, phone)
         self.uid = uid
         self.books = set()
 

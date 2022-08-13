@@ -58,11 +58,9 @@ class Transport:
 
 class Car(Transport):
     engine_type: str
+
     def __init__(self, brand, model, issue_year, color, engine_type):
-        self.brand = brand
-        self.model = model
-        self.issue_year = issue_year
-        self.color = color
+        super().__init__(brand, model, issue_year, color)
         self.engine_type = engine_type
 
     def move(self, num_km):
@@ -74,10 +72,7 @@ class Airplane(Transport):
     lifting_capacity: int
 
     def __init__(self, brand, model, issue_year, color, lifting_capacity):
-        self.brand = brand
-        self.model = model
-        self.issue_year = issue_year
-        self.color = color
+        super().__init__(brand, model, issue_year, color)
         self.lifting_capacity = lifting_capacity
 
     def move(self, num_km):
