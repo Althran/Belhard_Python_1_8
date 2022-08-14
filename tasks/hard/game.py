@@ -33,3 +33,63 @@
  Вернуть данного воина из метода battle.
 """
 import random
+
+
+class Warrior:
+
+    def __init__(self, name):
+        self.name = name
+        self.health_points = 100
+
+    def hit(self, other):
+        if other.health_points <= 0:
+            raise ValueError('Второй воин мертв')
+        other.health_points -= 20
+        print(f'{self.name} атаковал {other.name}. У {other.name} {other.health_points} HP')
+
+    def __repr__(self):
+        return f'{self.name} ({self.health_points}/100)'
+
+
+class Arena:
+
+    def __init__(self, warriors=None):
+        if warriors is None:
+            self.warriors = []
+        else:
+            self.warriors = warriors
+
+    def add_warrior(self, warrior):
+        if warrior in self.warriors:
+            raise ValueError("Воин уже на арене")
+        self.warriors.append(warrior)
+        print(f'{warrior.name} участвует в битве')
+
+    def choose_warrior(self):
+        return random.choice(self.warriors)
+
+    def battle(self):
+        if len(self.warriors) <= 1:
+            raise ValueError("Количество воинов на арене должно быть больше 1")
+        while len(self.warriors) > 1:
+            attacker_warrior = self.choose_warrior()
+            defender_warrior = self.choose_warrior()
+            while attacker_warrior == defender_warrior:
+                defender_warrior = self.choose_warrior()
+            attacker_warrior.hit(defender_warrior)
+            if defender_warrior.health_points <= 0:
+                self.warriors.remove(defender_warrior)
+                print(f'{defender_warrior.name} пал в битве')
+                print(f'Победил воин: {attacker_warrior}')
+        return self.warriors[0]
+
+
+if __name__ == '__main__':
+    war1 = Warrior('Olaf')
+    war2 = Warrior('Gundar')
+    war3 = Warrior('Pol')
+    fight = Arena()
+    fight.add_warrior(war1)
+    fight.add_warrior(war2)
+    fight.add_warrior(war3)
+    print(fight.battle())
